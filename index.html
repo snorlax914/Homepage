@@ -1,0 +1,325 @@
+<!--
+    서비스 기능: 유용한 페이지 링크, 페이지 내부 이동 네비게이션, 주가 정보, 현재 시간, 오늘 날씨, 시간표, 할 일 리스트, ChatGPT 챗봇
+    Open API: 금융지수 정보 API, 주식 정보 API, 날씨 API, ChatGPT API 활용
+    <Input> 3개: 각 article에 input 하나씩 존재
+    List 및 Table: 네이게이션에 list 활용, article#schedule에 table 활용
+    selector 활용: navigation.css 에 구현
+    semantic tag 활용: nav, header, section, article 등의 semantic tag 사용
+    DOM objecct 5개 이상 활용: stock.js 에 구현
+    input 입력값의 formatting 구현: 
+        input#stock_input은 입력값을 토대로 주식 정보를 서버로부터 받아오고 출력
+        input#todo_input은 입력값을 토대로 list에 삭제 가능한 객체 생성
+        input#chat_input은 입력값을 토대로 입력한 문자의 메시지 박스와 그에 대한 응답을 메시지 박스 형태로 출력
+    함수 및 최소 개발 기준 설명하는 주석: 이 주석을 통해 최소 개발 기준 설명, script 파일의 모든 함수에 주석을 작성
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="https://www.pusan.ac.kr/_UPLOAD/IMAGE/SiteMgr/SiteFaviconUpload/2018/1/gU0AJ5S6WCmvHC18.PNG">
+    <meta charset="UTF-8">
+    <title>My Homapage</title>
+</head>
+
+<body>
+    
+    <nav>
+        <div id="navigation_main">
+            <div title="Welcome!" id="logo">My Homapage</div>
+                <!--<list> 활용-->
+                <ul>
+                    <li><a href="https://www.pusan.ac.kr/kor/Main.do" target="_blank">부산대학교</a></li>
+                    <li><a href="https://onestop.pusan.ac.kr/login" target="_blank">학생지원시스템</a></li>
+                    <li><a href="https://cse.pusan.ac.kr/sites/cse/index.do" target="_blank">정보컴퓨터공학부</a></li>
+                    <li><a href="https://plato.pusan.ac.kr/" target="_blank">PLATO</a></li>
+                    <li><a href="https://picee.pusan.ac.kr/picee/index.do" target="_blank">공학교육혁신센터</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav>
+        <div id="navigation_side">
+            <!--<list> 활용-->
+            <ul>
+                <li>
+                    <div class="navigation_side_container">
+                        <span class="navigation_side_text">Main</span>
+                        <a href="#mainview"><div class="navigation_side_button"></div></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="navigation_side_container">
+                        <span class="navigation_side_text">Today</span>
+                        <a href="#today"><div class="navigation_side_button"></div></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="navigation_side_container">
+                        <span class="navigation_side_text">Schedule</span>
+                        <a href="#schedule"><div class="navigation_side_button"></div></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="navigation_side_container">
+                        <span class="navigation_side_text">ChatGPT</span>
+                        <a href="#chat_gpt"><div class="navigation_side_button"></div></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div id="mainview">
+            <div id="mainview_title_container">
+                <div id="mainview_title">
+                    <h1 id="mainview_name">Welcome to<br>My Homepage</h1>
+                    <p id="mainview_p">
+                        Hello! Welcome to my homepage.<br>
+                        I am an undergraduate student at <span style="color: #026e3c">Pusan National University</span>.<br>
+                        I am majoring in <span style="color: #004988;">Computer Engineering</span>.<br>
+                        I created this homepage to organize and share what I've learned.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section>
+        <article id="today" class="subview">
+            <div class="subview_title">
+                <div class="title_bar"></div>
+                <h1 class="subview_name">Today</h1>
+                <div class="title_bar"></div>
+            </div>
+            <p class="subview_p">
+                check today's various information!
+            </p>
+            <div id="today_div">
+                <div class="today_contents" id="stock_container">
+                    <div class="stock_info">
+                        <div class="stock_info_img_container">
+                            <a title="more details on finance.naver.com" href="https://finance.naver.com/sise/sise_index.naver?code=KOSPI" target="_blank"><img class="stock_info_img" src="img/kospi.jpg"></a>
+                        </div>
+                        <div class="stock_info_text_container">
+                            <span class="stock_info_text stock_name">index_name</span>
+                            <span class="stock_info_text high_low">high/low</span>
+                            <span class="stock_info_text market_close">open/close</span>
+                            <span class="stock_info_text rate">rate</span>
+                            <span class="stock_info_text base_date">base_date</span>
+                        </div>
+                    </div>
+                    <div class="stock_info">
+                        <div class="stock_info_img_container">
+                            <a title="more details on finance.naver.com" href="https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" target="_blank"><img class="stock_info_img" src="img/kosdaq.png"></a>
+                        </div>
+                        <div class="stock_info_text_container">
+                            <span class="stock_info_text stock_name">index_name</span>
+                            <span class="stock_info_text high_low">high/low</span>
+                            <span class="stock_info_text market_close">open/close</span>
+                            <span class="stock_info_text rate">rate</span>
+                            <span class="stock_info_text base_date">base_date</span>
+                        </div>
+                    </div>
+                    <div class="stock_info">
+                        <div class="stock_info_img_container">
+                            <a title="more details on finance.naver.com" href="https://finance.naver.com/item/main.naver?code=005930" target="_blank"><img class="stock_info_img" src="img/samsung.png"></a>
+                        </div>
+                        <div class="stock_info_text_container">
+                            <span class="stock_info_text stock_name">index_name</span>
+                            <span class="stock_info_text high_low">high/low</span>
+                            <span class="stock_info_text market_close">open/close</span>
+                            <span class="stock_info_text rate">rate</span>
+                            <span class="stock_info_text base_date">base_date</span>
+                        </div>
+                    </div>
+                    <div class="stock_info">
+                        <div class="stock_info_img_container">
+                            <a title="more details on finance.naver.com" href="https://finance.naver.com" target="_blank"><img class="stock_info_img" src="img/stock.png"></a>
+                        </div>
+                        <div class="stock_info_text_container">
+                            <span class="stock_info_text stock_name">index_name</span>
+                            <span class="stock_info_text high_low">high/low</span>
+                            <span class="stock_info_text market_close">open/close</span>
+                            <span class="stock_info_text rate">rate</span>
+                            <span class="stock_info_text base_date">base_date</span>
+                        </div>
+                    </div>
+                    <form id="stock_input_container">
+                        <!--input 1/3-->
+                        <input type="text" id="stock_input" placeholder="Enter stock name">
+                        <button id="stock_button">enter</button>
+                    </form>
+                </div>
+
+                <div class="today_contents" id="clock_container">
+                    <div id="clock">
+                        <span id="date"></span>
+                        <time id="time"></time>
+                        <span id="greeting"></span>
+                    </div>
+                </div>
+                
+                <div class="today_contents" id="weather_container">
+                    <div id="weather_info_container">
+                        <span class="weather_info" id="city">city</span>
+                        <span class="weather_info" id="temp">temperature</span>
+                        <span class="weather_info" id="weather">weather</span>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <article id="schedule" class="subview">
+            <div class="subview_title">
+                <div class="title_bar"></div>
+                <h1 class="subview_name">Schedule</h1>
+                <div class="title_bar"></div>
+            </div>
+            <p class="subview_p">
+                check today's schedule!
+            </p>
+
+            <div id="schedule_contents">
+                <div class="schedule_contents_row">
+                    <h1 class="schedule_title">3 - 1</h1>
+                    <h1 class="schedule_title">To-do List</h1>
+                </div>
+                <div class="schedule_contents_row">
+                    <div id="time_table_container">               
+                        <div id="time_table">
+                            <!--<table> 활용-->
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>09:00~10:15</th>
+                                        <td>Introduction to Internet and Web</td>
+                                        <td></td>
+                                        <td>Introduction to Internet and Web</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>10:30~11:45</th>
+                                        <td>Logic Circuit Design</td>
+                                        <td></td>
+                                        <td>Logic Circuit Design</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>13:30~14:45</th>
+                                        <td></td>
+                                        <td>Engineering Linear Algebra</td>
+                                        <td></td>
+                                        <td>Engineering Linear Algebra</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>15:00~16:15</th>
+                                        <td>Computer Architecture</td>
+                                        <td>Introduction to UNIX Programming</td>
+                                        <td>Computer Architecture</td>
+                                        <td>Introduction to UNIX Programming</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>16:30~17:45</th>
+                                        <td></td>
+                                        <td>Operating Systems</td>
+                                        <td></td>
+                                        <td>Operating Systems</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>18:00~22:00</th>
+                                        <td>Computer Software Design&Lab</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="todo_list_container">
+                        <div id="todo_list_contents">
+                            <div id="todo_list">
+                                <!--<list> 활용-->
+                                <ul id="list">
+                                </ul>
+                            </div>
+                            <form id="todo_input_container">
+                                <!--input 2/3-->
+                                <input type="text" id="todo_input" placeholder="Enter new To-do">
+                                <button type="submit" id="todo_button">enter</button>
+                            </form>
+                        </div>  
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </article>
+
+        <article id="chat_gpt" class="subview">
+            <div class="subview_title">
+                <div class="title_bar"></div>
+                <h1 class="subview_name">ChatGPT</h1>
+                <div class="title_bar"></div>
+            </div>
+            <p class="subview_p">
+                Try Chat GPT in my homepage!
+            </p>
+            <div id="chat_gpt_contents">
+                <div class="chat_gpt_col">
+                    <img class="chat_gpt_img" src="img/chatGPT.jpg">
+                </div>
+                <div id=chat_containter class="chat_gpt_col">
+                    <div id="chat">
+                        <div class="line">
+                            <span class="chat_box">Hello there! How can I help?</span>
+                        </div>
+                    </div>
+                    <form id="reply">
+                        <div class="reply_col">
+                            <button id="clear" type="button">clear</button>
+                        </div>
+                        <div class="reply_col">
+                            <!--input 3/3-->
+                            <input type="text" id="chat_input" placeholder="Enter a message">
+                        </div>
+                        <div class="reply_col">
+                            <button id="send">enter</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="chat_gpt_col">
+                    <img class="chat_gpt_img" id="chat_gpt_img2" src="img/chatGPT2.jpg">
+                </div>
+            </div>
+        </article>
+    </section>
+    
+    <script src="scripts/app.js"></script>
+    <script src="scripts/today.js"></script>
+    <script src="scripts/stock.js"></script>
+    <script src="scripts/chatgpt.js"></script>
+    <script src="scripts/todo.js"></script>
+
+</body>
+</html>

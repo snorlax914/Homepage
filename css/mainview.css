@@ -1,0 +1,38 @@
+/**
+ * css of Main header
+ */
+
+
+#mainview {
+    background-size: cover;
+    background-image: url(../img/background.jpg);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#mainview_title_container {
+    background-color: rgba( 0, 0, 0, 0.5 );
+    padding: 40px;
+    border-radius: 10px;
+    margin-left: 90px;
+}
+
+#mainview_title {
+    background-color: rgba( 0, 0, 0, 0.5 );
+    padding: 40px;
+    border-radius: 10px;
+}
+
+#mainview_name {
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+}
+
+#mainview_p {
+    font-size: 20px;
+    margin-top: 50px;
+    line-height: 27px;
+    color: white;
+}

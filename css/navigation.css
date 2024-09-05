@@ -1,0 +1,98 @@
+/**
+ * css of main navigation and side navigation
+ */
+
+#navigation_main {
+    background-color: rgba( 0, 0, 0, 0 );
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    color: white;
+}
+
+/* using pseudo-class 1/2 */
+#navigation_main:hover {
+    background-color: rgba( 0, 0, 0, 0.5 );
+}
+
+/* using pseudo-class 2/2 */
+#navigation_main a:hover {
+    border-bottom: 3px solid #026e3c;
+}
+
+/* using attribute selector 1/2 */
+a[target = _blank] {
+    border-bottom: 3px solid rgba(0, 0, 0, 0);
+    transition: border-bottom 0.25s;
+    padding-bottom: 5px;
+}
+
+/* using attribute selector 2/2 */
+div[title = "Welcome!"] {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* using combinator 1/5 */
+#navigation_main ul {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* using combinator 2/5 */
+#navigation_main li{
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px 40px;
+}
+
+/* using combinator 3/5 */
+#navigation_side li {
+    margin: 15px 0px;
+}
+
+/* using combinator 4/5 */
+.navigation_side_container a {
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+/* using combinator 5/5 */
+.navigation_side_container span {
+    color: white;
+    visibility: hidden;
+}
+
+
+#navigation_side {
+    background-color: rgba( 0, 0, 0, 0 );
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    text-align: center;
+}
+
+.navigation_side_container {
+    display: flex;
+    align-items: center;
+    justify-content:end;
+}
+
+.navigation_side_button {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: white;
+}

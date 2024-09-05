@@ -1,0 +1,39 @@
+/**
+ *    article의 제목 스타일
+ */
+
+.subview:nth-child(even) {
+    background-color: #181a1b;
+}
+
+.subview {
+    background-color: #1d2021;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subview_title {
+    margin: 50px 0px 20px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.subview_p {
+    color: white;
+    font-size: 20px;
+}
+
+.title_bar {
+    width: 60px;
+    height: 3px;
+    background-color: #004988;
+    margin: 25px 15px;
+}
+
+.subview_name {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}

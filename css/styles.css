@@ -1,0 +1,23 @@
+/**
+ * main style sheet
+ * import all other css files and set html, body style and font
+ *
+ */
+
+@import "reset.css";
+@import "mainview.css";
+@import "subview.css";
+@import "navigation.css";
+@import "today.css";
+@import "todo.css";
+@import "chatgpt.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap');
+
+body {
+    color: #2e363e;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
