@@ -2,7 +2,7 @@
  *  openAI 의 API를 사용하여 chatGPT 기반 챗봇을 구현
  */
 
-const API_KEY_GPT = "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"
+const API_KEY_GPT = ""
 const sendBtn = document.getElementById("send")
 const clearBtn = document.getElementById("clear")
 

@@ -7,7 +7,7 @@ const date = document.getElementById("date");
 const time = document.getElementById("time");
 const greeting = document.getElementById("greeting");
 const weatherInfoContainer = document.getElementById("weather_info_container");
-const API_KEY_WEATHER = "6ccc386839296a4fc564a25e676b3f29";
+const API_KEY_WEATHER = "";
 date.innerHTML = `${dateToday(now.getDay())}, ${now.getFullYear()}. ${(now.getMonth()+1).toString().padStart(2, "0")}. ${now.getDate().toString().padStart(2, "0")}.`;
 greeting.innerHTML = `good ${hourToTime(now.getHours())}, 휘수`;
 

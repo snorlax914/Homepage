@@ -1,8 +1,8 @@
 /** 
  * 공공데이터 지수시세정보, 주식시세정보 API를 활용하여 KOSPI, KOSDAQ, 삼성전자, 원하는 주식 정보(Default: HMM)의 출력을 구현
  */
-const API_KEY_STOCK = "Wn5JX%2FfpsBzgcoROzHGw0Nju0mtxNOr0KBhWDor8qULuygfftvRMehz%2FntUT%2BzGAh1x0yQTxIoK6%2BN6IAYrYgA%3D%3D"
-const API_KEY_INDEX = "Wn5JX%2FfpsBzgcoROzHGw0Nju0mtxNOr0KBhWDor8qULuygfftvRMehz%2FntUT%2BzGAh1x0yQTxIoK6%2BN6IAYrYgA%3D%3D"
+const API_KEY_STOCK = ""
+const API_KEY_INDEX = ""
 const index1 = "코스피"
 const index2 = "코스닥"
 const stock1 = "삼성전자"
